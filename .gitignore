@@ -3,5 +3,6 @@ venv
 env
 .env
 node_modules
-db.sqlite3
+*.sqlite3
+*.sqlite3-journal
 __pycache__
