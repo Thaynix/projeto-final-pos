@@ -2,44 +2,46 @@ from django.db import migrations
 
 
 def bumpdata(apps, schema_editor):
-    Geo = apps.get_model("api", "Geo")
-    geo = Geo.objects.create(lat="60.3943055", lng="5.3259192")
-
-    Address = apps.get_model("api", "Address")
-    address = Address.objects.create(
-        street="123 Main St",
-        suite="Apt 1",
-        city="Norway",
-        zip_code="10001",
-        geo=geo,
-    )
-
-    Company = apps.get_model("api", "Company")
-    company = Company.objects.create(
-        name="Acme Inc",
-        catch_phrase="We do stuff",
-        bs="Business strategy",
-    )
 
     UserPlaceholder = apps.get_model("api", "UserPlaceholder")
     user1 = UserPlaceholder.objects.create(
         name="John Doe",
         username="johndoe",
         email="johndoe@example.com",
-        address=address,
-        phone="555-555-5555",
+        # Address
+        address_street="666 Main St",
+        address_suite="Apt 1",
+        address_city="Norway",
+        address_zip_code="10001",
+        address_geo_lat="60.3943055",
+        address_geo_lng="5.3259192",
+        # Contact
+        phone="666-666-6666",
         website="www.johndoe.com",
-        company=company,
+        # Company
+        company_name="Acme Inc",
+        company_catch_phrase="We do stuff",
+        company_bs="Business strategy satanic",
     )
 
     user2 = UserPlaceholder.objects.create(
         name="Jane Doe",
         username="janedoe",
         email="janedoe@example.com",
-        address=address,
+        # Address
+        address_street="123 Main St",
+        address_suite="Apt 1",
+        address_city="Norway",
+        address_zip_code="10001",
+        address_geo_lat="60.3943055",
+        address_geo_lng="5.3259192",
+        # Contact
         phone="555-555-5555",
         website="www.janedoe.com",
-        company=company,
+        # Company
+        company_name="New Company Inc",
+        company_catch_phrase="We do other stuff",
+        company_bs="Other business strategy",
     )
 
     Post = apps.get_model("api", "Post")

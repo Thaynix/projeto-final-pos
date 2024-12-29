@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import (
     UserPlaceholder,
-    Company,
-    Geo,
-    Address,
     Post,
     Comment,
     Todo,
@@ -13,9 +10,6 @@ from .models import (
 
 # User Placeholder
 admin.site.register(UserPlaceholder)
-admin.site.register(Company)
-admin.site.register(Geo)
-admin.site.register(Address)
 # Post
 admin.site.register(Post)
 admin.site.register(Comment)
