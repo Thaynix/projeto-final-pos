@@ -28,6 +28,7 @@ pip install -r service/requirements.txt
 ```
 
 - Faça as migrações
+
 ```bash
 python service/manage.py migrate
 ```
@@ -37,5 +38,23 @@ python service/manage.py migrate
 ```bash
 python service/manage.py runserver
 ```
+
+### Cliente
+
+Com o serviço rodando, é possível rodar o cliente localmente criando um servidor web com Python.
+
+- No terminal, entre na pasta `client/`
+
+```bash
+cd ./client/
+```
+
+- Crie um servidor web com Python, use uma porta **diferente** da porta usada no serviço
+
+```bash
+python -m http.server 8888
+```
+
+Alternamente, se estiver usando o VSCode, é possível abrir um servidor com a extensão [LiveServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
 
 ---
