@@ -2,7 +2,7 @@
 
 import { ApiWrapper } from './wrapper.js';
 
-const api = new ApiWrapper('http://localhost:8000/');
+const api = new ApiWrapper();
 
 // Função para exibir os usuários no DOM
 function displayUsers(users) {
@@ -75,17 +75,22 @@ let userIdToDelete = null; // Variável global para armazenar o ID do usuário a
 // Função para lidar com a exclusão de usuários
 function handleDeleteUser(event) {
     userIdToDelete = event.target.getAttribute('data-id'); // Salva o ID do usuário a ser excluído
-    const deleteUserModal = new bootstrap.Modal(document.getElementById('deleteUserModal'));
-    deleteUserModal.show(); // Exibe o modal de confirmação
+    const deleteModal = new bootstrap.Modal('#deleteModal');
+    deleteModal.show(); // Exibe o modal de confirmação
 }
 
 // Função para confirmar a exclusão
-async function confirmDeleteUser() {
+async function confirmDelete() {
     if (userIdToDelete) {
         try {
-            await api.deleteUser(userIdToDelete); // Chama a API para excluir o usuário
-            console.log('User deleted successfully!');
+            await api.deleteUser(userIdToDelete);
             const users = await api.getUsers();
+
+            const closeModal = document.getElementById('closeModalBtn');
+            if (closeModal) {
+                closeModal.click();
+            }
+
             displayUsers(users);
         } catch (error) {
             console.error('Error deleting user:', error);
@@ -97,7 +102,7 @@ async function confirmDeleteUser() {
 }
 
 // Eventos iniciais
-document.getElementById('confirmDeleteUser').addEventListener('click', confirmDeleteUser);
+document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
 
 // Função para adicionar ou atualizar um usuário
 async function handleAddOrUpdateUser(event) {
