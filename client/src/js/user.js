@@ -4,16 +4,15 @@ import { ApiWrapper } from './wrapper.js';
 
 const api = new ApiWrapper();
 
-// Função para exibir os usuários no DOM
-function displayUsers(users) {
-    const usersContainer = document.getElementById('users-container');
-    usersContainer.innerHTML = ''; // Limpa o container antes de renderizar
+function display(users) {
+    const container = document.getElementById('users-container');
+    container.innerHTML = '';
 
     users.forEach((user) => {
-        const userDiv = document.createElement('div');
-        userDiv.className = 'user';
+        const div = document.createElement('div');
+        div.className = 'user';
 
-        userDiv.innerHTML = `
+        div.innerHTML = `
             <h2>${user.name}</h2>
             <p><strong>Username:</strong> ${user.username}</p>
             <p><strong>Email:</strong> ${user.email}</p>
@@ -24,30 +23,28 @@ function displayUsers(users) {
             <button class="delete-user" data-id="${user.id}">Delete</button>
         `;
 
-        usersContainer.appendChild(userDiv);
+        container.appendChild(div);
     });
 
     // Adiciona eventos aos botões
     document.querySelectorAll('.edit-user').forEach((button) => {
-        button.addEventListener('click', handleEditUser);
+        button.addEventListener('click', handleEdit);
     });
 
     document.querySelectorAll('.delete-user').forEach((button) => {
-        button.addEventListener('click', handleDeleteUser);
+        button.addEventListener('click', handleDelete);
     });
 }
 
 // Função para lidar com a edição de usuários
-async function handleEditUser(event) {
+async function handleEdit(event) {
     const userId = event.target.getAttribute('data-id');
 
     try {
-        // Obtenha os dados do usuário
         const user = await api.getUser(userId);
 
-        // Preencha o formulário com os dados do usuário
         const form = document.getElementById('user-form');
-        form.dataset.editId = userId; // Armazena o ID no formulário para edição
+        form.dataset.editId = userId;
         form.querySelector('#name').value = user.name || '';
         form.querySelector('#username').value = user.username || '';
         form.querySelector('#email').value = user.email || '';
@@ -63,27 +60,24 @@ async function handleEditUser(event) {
         form.querySelector('#company-catch-phrase').value = user.company_catch_phrase || '';
         form.querySelector('#company-bs').value = user.company_bs || '';
 
-        // Desloque a visualização para o formulário
         form.scrollIntoView({ behavior: 'smooth' });
     } catch (error) {
         console.error('Error fetching user data for editing:', error);
     }
 }
 
-let userIdToDelete = null; // Variável global para armazenar o ID do usuário a ser excluído
+let idToDelete = null;
 
-// Função para lidar com a exclusão de usuários
-function handleDeleteUser(event) {
-    userIdToDelete = event.target.getAttribute('data-id'); // Salva o ID do usuário a ser excluído
+function handleDelete(event) {
+    idToDelete = event.target.getAttribute('data-id');
     const deleteModal = new bootstrap.Modal('#deleteModal');
-    deleteModal.show(); // Exibe o modal de confirmação
+    deleteModal.show();
 }
 
-// Função para confirmar a exclusão
 async function confirmDelete() {
-    if (userIdToDelete) {
+    if (idToDelete) {
         try {
-            await api.deleteUser(userIdToDelete);
+            await api.deleteUser(idToDelete);
             const users = await api.getUsers();
 
             const closeModal = document.getElementById('closeModalBtn');
@@ -91,28 +85,26 @@ async function confirmDelete() {
                 closeModal.click();
             }
 
-            displayUsers(users);
+            display(users);
         } catch (error) {
             console.error('Error deleting user:', error);
             alert('Failed to delete user. Please try again.');
         } finally {
-            userIdToDelete = null; // Reseta o ID após a exclusão
+            idToDelete = null;
         }
     }
 }
 
-// Eventos iniciais
 document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
 
-// Função para adicionar ou atualizar um usuário
-async function handleAddOrUpdateUser(event) {
+async function handleAddOrUpdate(event) {
     event.preventDefault();
 
     const form = event.target;
-    const userId = form.dataset.editId || null; // Verifica se é uma edição
+    const userId = form.dataset.editId || null;
     const formData = new FormData(form);
 
-    const userData = {
+    const data = {
         name: formData.get('name'),
         username: formData.get('username'),
         email: formData.get('email'),
@@ -131,30 +123,26 @@ async function handleAddOrUpdateUser(event) {
 
     try {
         if (userId) {
-            // Atualizar usuário existente
-            await api.updateUser(userId, userData);
-            delete form.dataset.editId; // Remove o ID após a edição
+            await api.updateUser(userId, data);
+            delete form.dataset.editId;
         } else {
-            // Criar novo usuário
-            await api.createUser(userData);
+            await api.createUser(data);
         }
 
         const users = await api.getUsers();
-        displayUsers(users);
-        form.reset(); // Limpa o formulário após enviar
+        display(users);
+        form.reset();
     } catch (error) {
         console.error('Error adding or updating user:', error);
     }
 }
 
-// Eventos iniciais
-document.getElementById('user-form').addEventListener('submit', handleAddOrUpdateUser);
+document.getElementById('user-form').addEventListener('submit', handleAddOrUpdate);
 
-// Chamada inicial para carregar os usuários
 (async function initialize() {
     try {
         const users = await api.getUsers();
-        displayUsers(users);
+        display(users);
     } catch (error) {
         console.error('Error fetching users:', error);
 
