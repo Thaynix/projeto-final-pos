@@ -101,15 +101,15 @@ def bumpdata(apps, schema_editor):
     Photo.objects.create(
         albumId=album,
         title="My first photo",
-        url="https://upload.wikimedia.org/wikipedia/pt/thumb/c/ce/De_Mysteriis_Dom_Sathanas.jpg/220px-De_Mysteriis_Dom_Sathanas.jpg",
-        thumbnailUrl="https://upload.wikimedia.org/wikipedia/pt/thumb/c/ce/De_Mysteriis_Dom_Sathanas.jpg/220px-De_Mysteriis_Dom_Sathanas.jpg",
+        url="https://placehold.co/400x400/mediumpurple/white/",
+        thumbnailUrl="https://placehold.co/100x100/mediumpurple/white/",
     )
 
     Photo.objects.create(
         albumId=album,
         title="My second photo",
-        url="https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Venomblackmetal.jpg/220px-Venomblackmetal.jpg",
-        thumbnailUrl="https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Venomblackmetal.jpg/220px-Venomblackmetal.jpg",
+        url="https://placehold.co/400x400/skyblue/white/",
+        thumbnailUrl="https://placehold.co/100x100/skyblue/white/",
     )
 
 

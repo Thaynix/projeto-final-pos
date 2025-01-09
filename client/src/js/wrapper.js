@@ -1,8 +1,8 @@
 'use strict';
 
 export class ApiWrapper {
-    constructor(baseURL) {
-        this.baseURL = baseURL;
+    constructor() {
+        this.baseURL = "http://localhost:8000/";
     }
 
     async request(endpoint, method = 'GET', body = null) {

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSONPlacefake Client</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="../src/css/main.css">
+</head>
+<body>
+
+  <a href="../index.html">Inicio</a>
+  <a href="users.html">Usuários</a>
+  <a href="posts.html">Posts</a>
+  <a href="comments.html">Comentários</a>
+  <a href="todos.html">Tarefas</a>
+  <a href="albums.html">Albums</a>
+  <a href="photos.html">Fotos</a>
+
+  <h1>Fotos</h1>
+
+  <form id="photo-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url">
+
+    <label for="thumbnailUrl">Thumbnail URL:</label>
+    <input type="text" id="thumbnailUrl" name="thumbnailUrl">
+
+    <label for="albumIdSelect">Album:</label>
+    <select name="albumIdSelect" id="albumIdSelect"></select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <hr>
+
+  <main>
+    <section id="photos-container" class="photos-container"></section>
+  </main>
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" id="closeModalBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this <strong>photo</strong>?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-danger" id="confirmDelete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script type="module" src="../src/js/photo.js"></script>
+
+</html>
