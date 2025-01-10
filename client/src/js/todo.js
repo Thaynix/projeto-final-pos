@@ -5,13 +5,13 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(todos) {
-    const container = document.getElementById('todos-container');
+    const container = document.getElementById('todos-container').querySelector('tbody');
     container.innerHTML = '';
 
     todos.forEach((todo) => {
-        const div = document.createElement('div');
-        div.className = 'todo';
-        div.dataset.id = todo.id;
+        const tr = document.createElement('tr');
+        tr.className = 'todo';
+        tr.dataset.id = todo.id;
 
         let statusEl;
         if (todo.completed) {
@@ -21,20 +21,21 @@ function display(todos) {
         }
 
         api.getUser(todo.userId).then((user) => {
-            div.innerHTML = `
-                <h2>${todo.title}</h2>
-                <p>User: ${user.name}</p>`
-                + statusEl +
-                `
-                <div>
-                    <button class="edit-todo" data-id="${todo.id}">Edit</button>
-                    <button class="delete-todo" data-id="${todo.id}">Delete</button>
-                </div>
-            `;
-            container.appendChild(div);
+            tr.innerHTML = `
+                <td>${user.name}</td>
+                <td>${todo.title}</td>
+                <td>${statusEl}</td>
+                
 
-            div.querySelector('.edit-todo').addEventListener('click', handleEdit);
-            div.querySelector('.delete-todo').addEventListener('click', handleDelete);
+                <td>
+                    <button class="edit-todo btn btn-primary" data-id="${todo.id}">Edit</button>
+                    <button class="delete-todo btn btn-danger" data-id="${todo.id}">Delete</button>
+                </td>
+            `;
+            container.appendChild(tr);
+
+            tr.querySelector('.edit-todo').addEventListener('click', handleEdit);
+            tr.querySelector('.delete-todo').addEventListener('click', handleDelete);
         });
     });
 }

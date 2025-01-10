@@ -5,29 +5,30 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(comments) {
-    const container = document.getElementById('comments-container');
-    container.innerHTML = '';
+    const container = document.getElementById('comments-container').querySelector('tbody');
+    container.innerHTML = ''; // Limpa o container antes de renderizar
 
     comments.forEach((comment) => {
-        const div = document.createElement('div');
-        div.className = 'comment';
-        div.dataset.id = comment.id;
+        const tr = document.createElement('tr');
+        tr.className = 'comment';
+        tr.dataset.id = comment.id;
 
         api.getPost(comment.postId).then((post) => {
-            div.innerHTML = `
-            <h2>${comment.body}</h2>
-              <p>User: ${comment.name} (${comment.email}) </p>
-              <p>Commented on <i>"${post.title}"</i> </p>
-                <div>
-                    <button class="edit-comment" data-id="${comment.id}">Edit</button>
-                    <button class="delete-comment" data-id="${comment.id}">Delete</button>
+            tr.innerHTML = `
+                <td>${comment.name}</td> 
+                <td>(${comment.email})</td>
+                <td>${post.title}</td>
+                <td>${comment.body}</td>
+                <div class="d-flex justify-content-start gap-2 mt-2">
+                    <button class="btn btn-primary edit-comment" data-id="${comment.id}">Edit</button>
+                    <button class="btn btn-danger delete-comment" data-id="${comment.id}">Delete</button>
                 </div>
             `;
-            container.appendChild(div);
+            container.appendChild(tr);
 
             // Adiciona os eventos após o elemento ser adicionado ao DOM
-            div.querySelector('.edit-comment').addEventListener('click', handleEdit);
-            div.querySelector('.delete-comment').addEventListener('click', handleDelete);
+            tr.querySelector('.edit-comment').addEventListener('click', handleEdit);
+            tr.querySelector('.delete-comment').addEventListener('click', handleDelete);
         });
     });
 }

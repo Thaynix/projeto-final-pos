@@ -11,37 +11,85 @@
 </head>
 <body>
 
-  <a href="../index.html">Inicio</a>
-  <a href="users.html">Usuários</a>
-  <a href="posts.html">Posts</a>
-  <a href="comments.html">Comentários</a>
-  <a href="todos.html">Tarefas</a>
-  <a href="albums.html">Albums</a>
-  <a href="photos.html">Fotos</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">PROJETO FINAL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">MENU</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="users.html">Usuários</a></li>
+            <li class="nav-item"><a class="nav-link" href="posts.html">Posts</a></li>
+            <li class="nav-item"><a class="nav-link active" href="comments.html">Comentários</a></li>
+            <li class="nav-item"><a class="nav-link" href="todos.html">Tarefas</a></li>
+            <li class="nav-item"><a class="nav-link" href="albums.html">Álbuns</a></li>
+            <li class="nav-item"><a class="nav-link" href="photos.html">Fotos</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-  <h1>Posts</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mt-5">
+        <h1>Posts</h1>
+        <form class="row g-3" id="post-form">
+          <div class="col-md-6">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" id="title" name="title"  class="form-control" required>
+          </div>
 
-  <form id="post-form">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
+          <div class="col-md-6">
+            <label for="userIdSelect" class="form-label">User:</label>
+            <select name="userIdSelect" id="userIdSelect" class="form-select"></select>
+          </div>
 
-    <label for="body">Body:</label>
-    <input type="textarea" id="body" name="body">
+          <div class="col-md-6">
+            <label for="body" class="form-label">Body:</label>
+            <textarea type="textarea" id="body" name="body" class="form-control" required>
+            </textarea>
+            </div>
 
-    <label for="userIdSelect">User:</label>
-    <select name="userIdSelect" id="userIdSelect">
+          
+          
+          <div class="col-12 d-flex align-content-center w-100 justify-content-center">
+            <button type="submit" class="btn btn-success">ENVIAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-    </select>
-    <!-- Botão de envio -->
-    <button type="submit">Submit</button>
-  </form>
+    <div class="row">
+  
+      <div class="col-12 mt-5">        
+        <section id="posts-container" class="posts-container table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                    <th scope="col">USER</th>
+                    <th scope="col text-center">TITLE</th>
+                    <th scope="col text-center">DESCRIPTION</th>
+                    <th scope="col ">ACTIONS</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+          </table>
+      </section>
+      </div>
+    </div>
 
-  <hr>
+  </div>
 
-  <main>
-    <section id="posts-container" class="posts-container"></section>
-  </main>
-
+  
   <!-- Modal de Confirmação -->
   <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">

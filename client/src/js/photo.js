@@ -5,28 +5,29 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(photos) {
-    const container = document.getElementById('photos-container');
+    const container = document.getElementById('photos-container').querySelector('tbody');
     container.innerHTML = '';
 
     photos.forEach((photo) => {
-        const div = document.createElement('div');
-        div.className = 'photo';
-        div.dataset.id = photo.id;
+        const tr = document.createElement('tr');
+        tr.className = 'photo';
+        tr.dataset.id = photo.id;
 
         api.getAlbum(photo.albumId).then((album) => {
-            div.innerHTML = `
-                <h2>${photo.title}</h2>
-                <p>Album: ${album.title}</p>
-                <img src="${photo.url}" alt="${photo.title}">
-                <div>
-                    <button class="edit-photo" data-id="${photo.id}">Edit</button>
-                    <button class="delete-photo" data-id="${photo.id}">Delete</button>
-                </div>
+            tr.innerHTML = `
+                <td><img src="${photo.url}" alt="${photo.title}" class="img-fluid" style="max-width: 100px; max-height: 100px;"></td>
+                <td>${photo.title}</td>
+                <td>Album: ${album.title}</td>
+                
+                <td>
+                    <button class="edit-photo btn btn-primary" data-id="${photo.id}">Edit</button>
+                    <button class="delete-photo btn btn-danger" data-id="${photo.id}">Delete</button>
+                </td>
             `;
-            container.appendChild(div);
+            container.appendChild(tr);
 
-            div.querySelector('.edit-photo').addEventListener('click', handleEdit);
-            div.querySelector('.delete-photo').addEventListener('click', handleDelete);
+            tr.querySelector('.edit-photo').addEventListener('click', handleEdit);
+            tr.querySelector('.delete-photo').addEventListener('click', handleDelete);
         });
     });
 }

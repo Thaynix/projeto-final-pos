@@ -5,25 +5,27 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(users) {
-    const container = document.getElementById('users-container');
+    const container = document.getElementById('users-container').querySelector('tbody');
     container.innerHTML = '';
 
     users.forEach((user) => {
-        const div = document.createElement('div');
-        div.className = 'user';
+        const tr = document.createElement('tr');
+        tr.className = 'user';
 
-        div.innerHTML = `
-            <h2>${user.name}</h2>
-            <p><strong>Username:</strong> ${user.username}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <p><strong>Company:</strong> ${user.company_name}</p>
-            <p><strong>Phone:</strong> ${user.phone}</p>
-            <p><strong>Website:</strong> ${user.website}</p>
-            <button class="edit-user" data-id="${user.id}">Edit</button>
-            <button class="delete-user" data-id="${user.id}">Delete</button>
+        tr.innerHTML = `
+            <td>${user.name}</td>
+            <td>${user.username}</td>
+            <td>${user.email}</td>
+            <td>${user.company_name}</td>
+            <td>${user.phone}</td>
+            <td>${user.website}</td>
+            <td class="text-center d-flex justify-content-center gap-2">
+                <button class="edit-user" data-id="${user.id}">Edit</button>
+                <button class="delete-user" data-id="${user.id}">Delete</button>
+            </td>
         `;
 
-        container.appendChild(div);
+        container.appendChild(tr);
     });
 
     // Adiciona eventos aos botões
@@ -138,6 +140,11 @@ async function handleAddOrUpdate(event) {
 }
 
 document.getElementById('user-form').addEventListener('submit', handleAddOrUpdate);
+document.getElementById('user-list-btn').addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = 'user-list.html';
+});
+
 
 (async function initialize() {
     try {

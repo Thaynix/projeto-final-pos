@@ -5,27 +5,27 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(albums) {
-    const container = document.getElementById('albums-container');
+    const container = document.getElementById('albums-container').querySelector('tbody');
     container.innerHTML = '';
 
     albums.forEach((album) => {
-        const div = document.createElement('div');
-        div.className = 'album';
-        div.dataset.id = album.id;
+        const tr = document.createElement('tr');
+        tr.className = 'album';
+        tr.dataset.id = album.id;
 
         api.getUser(album.userId).then((user) => {
-            div.innerHTML = `
-                <h2>${album.title}</h2>
-                <p>User: ${user.name}</p>
-                <div>
-                    <button class="edit-album" data-id="${album.id}">Edit</button>
-                    <button class="delete-album" data-id="${album.id}">Delete</button>
-                </div>
+            tr.innerHTML = `
+                <td>${album.title}</td>
+                <td>${user.name}</td>
+                <td>
+                    <button class="edit-album btn btn-primary" data-id="${album.id}">Edit</button>
+                    <button class="delete-album btn btn-danger" data-id="${album.id}">Delete</button>
+                </td>
             `;
-            container.appendChild(div);
+            container.appendChild(tr);
 
-            div.querySelector('.edit-album').addEventListener('click', handleEdit);
-            div.querySelector('.delete-album').addEventListener('click', handleDelete);
+            tr.querySelector('.edit-album').addEventListener('click', handleEdit);
+            tr.querySelector('.delete-album').addEventListener('click', handleDelete);
         });
     });
 }

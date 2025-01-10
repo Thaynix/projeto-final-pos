@@ -5,29 +5,29 @@ import { ApiWrapper } from './wrapper.js';
 const api = new ApiWrapper();
 
 function display(posts) {
-    const container = document.getElementById('posts-container');
+    const container = document.getElementById('posts-container').querySelector('tbody');
     container.innerHTML = ''; // Limpa o container antes de renderizar
 
     posts.forEach((post) => {
-        const div = document.createElement('div');
-        div.className = 'post';
-        div.dataset.id = post.id;
+        const tr = document.createElement('tr');
+        tr.className = 'post';
+        tr.dataset.id = post.id;
 
-        api.getUser(post.userId).then((user) => {
-            div.innerHTML = `
-                <h2>${post.title}</h2>
-                <p>${post.body}</p>
-                <p>User: ${user.name}</p>
-                <div>
-                    <button class="edit-post" data-id="${post.id}">Edit</button>
-                    <button class="delete-post" data-id="${post.id}">Delete</button>
-                </div>
+        api.getUser (post.userId).then((user) => {
+            tr.innerHTML = `
+                <td>${user.name}</td>
+                <td class="text-center"><h5>${post.title}</h5></td>
+                <td class="text-center">${post.body}</td>
+                <td class="text-center d-flex justify-content-center gap-2">
+                    <button class="edit-post btn btn-primary" data-id="${post.id}">Edit</button>
+                    <button class="delete-post btn btn-danger" data-id="${post.id}">Delete</button>
+                </td>
             `;
-            container.appendChild(div);
+            container.appendChild(tr);
 
             // Adiciona os eventos após o elemento ser adicionado ao DOM
-            div.querySelector('.edit-post').addEventListener('click', handleEdit);
-            div.querySelector('.delete-post').addEventListener('click', handleDelete);
+            tr.querySelector('.edit-post').addEventListener('click', handleEdit);
+            tr.querySelector('.delete-post').addEventListener('click', handleDelete);
         });
     });
 }
