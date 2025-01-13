@@ -26,8 +26,8 @@
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="users.html">Usuários</a></li>
-            <li class="nav-item"><a class="nav-link" href="posts.html">Posts</a></li>
-            <li class="nav-item"><a class="nav-link active" href="comments.html">Comentários</a></li>
+            <li class="nav-item"><a class="nav-link active" href="posts.html">Posts</a></li>
+            <li class="nav-item"><a class="nav-link" href="comments.html">Comentários</a></li>
             <li class="nav-item"><a class="nav-link" href="todos.html">Tarefas</a></li>
             <li class="nav-item"><a class="nav-link" href="albums.html">Álbuns</a></li>
             <li class="nav-item"><a class="nav-link" href="photos.html">Fotos</a></li>
@@ -43,17 +43,17 @@
         <h1>Posts</h1>
         <form class="row g-3" id="post-form">
           <div class="col-md-6">
-            <label for="title" class="form-label">Title:</label>
+            <label for="title" class="form-label">Titulo:</label>
             <input type="text" id="title" name="title"  class="form-control" required>
           </div>
 
           <div class="col-md-6">
-            <label for="userIdSelect" class="form-label">User:</label>
+            <label for="userIdSelect" class="form-label">Usuario:</label>
             <select name="userIdSelect" id="userIdSelect" class="form-select"></select>
           </div>
 
           <div class="col-md-6">
-            <label for="body" class="form-label">Body:</label>
+            <label for="body" class="form-label">Texto:</label>
             <textarea type="textarea" id="body" name="body" class="form-control" required>
             </textarea>
             </div>
@@ -71,13 +71,13 @@
   
       <div class="col-12 mt-5">        
         <section id="posts-container" class="posts-container table-responsive">
-          <table class="table">
+          <table class="table text-center">
               <thead>
                   <tr>
-                    <th scope="col">USER</th>
-                    <th scope="col text-center">TITLE</th>
-                    <th scope="col text-center">DESCRIPTION</th>
-                    <th scope="col ">ACTIONS</th>
+                    <th scope="col">USUARIO</th>
+                    <th scope="col text-center">TITULO</th>
+                    <th scope="col text-center">DESCRICAO</th>
+                    <th scope="col ">AÇÕES</th>
                   </tr>
               </thead>
               <tbody>

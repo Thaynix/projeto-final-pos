@@ -20,8 +20,8 @@ function display(users) {
             <td>${user.phone}</td>
             <td>${user.website}</td>
             <td class="text-center d-flex justify-content-center gap-2">
-                <button class="edit-user" data-id="${user.id}">Edit</button>
-                <button class="delete-user" data-id="${user.id}">Delete</button>
+                <button class="edit-user btn btn-primary" data-id="${user.id}">Edit</button>
+                <button class="delete-user btn btn-danger" data-id="${user.id}">Delete</button>
             </td>
         `;
 
@@ -140,10 +140,6 @@ async function handleAddOrUpdate(event) {
 }
 
 document.getElementById('user-form').addEventListener('submit', handleAddOrUpdate);
-document.getElementById('user-list-btn').addEventListener('click', (event) => {
-    event.preventDefault();
-    window.location.href = 'user-list.html';
-});
 
 
 (async function initialize() {

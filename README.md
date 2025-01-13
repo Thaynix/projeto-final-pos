@@ -1,6 +1,28 @@
 # projeto-final-pos-2024
 Projeto Final da disciplina de POS
 
+## Grupo
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/dvanael" title="Anael Barbosa">
+        <img src="https://avatars.githubusercontent.com/dvanael" width="100px;" alt="collaborators pictures"/><br>
+        <sub>
+          <b>Anael Barbosa</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Thaynix" title="Thaisy Juliany">
+        <img src="https://avatars.githubusercontent.com/Thaynix" width="100px;" alt="collaborators pictures"/><br>
+        <sub>
+          <b>Thaisy Juliany</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Instalação
 

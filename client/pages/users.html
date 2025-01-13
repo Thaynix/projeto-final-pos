@@ -25,7 +25,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="users.html">Usuários</a></li>
+            <li class="nav-item"><a class="nav-link active" href="users.html">Usuários</a></li>
             <li class="nav-item"><a class="nav-link" href="posts.html">Posts</a></li>
             <li class="nav-item"><a class="nav-link" href="comments.html">Comentários</a></li>
             <li class="nav-item"><a class="nav-link" href="todos.html">Tarefas</a></li>
@@ -46,7 +46,7 @@
         <form class="row g-3" id="user-form">
           <h2 class="text-secondary">Informações básicas</h2>
           <div class="col-md-6">
-            <label for="name" class="form-label">Name:</label>
+            <label for="name" class="form-label">Nome:</label>
             <input type="text" id="name" name="name" class="form-control" required>
           </div>
 
@@ -63,22 +63,22 @@
           <h2 class="text-secondary">Endereço</h2>
           
           <div class="col-md-6">
-            <label for="address-street" class="form-label">Street:</label>
+            <label for="address-street" class="form-label">Rua:</label>
             <input type="text" id="address-street" name="address_street" class="form-control">
           </div>
 
           <div class="col-md-6">
-            <label for="address-suite" class="form-label">Suite:</label>
+            <label for="address-suite" class="form-label">Apartamento:</label>
             <input type="text" id="address-suite" name="address_suite" class="form-control">
           </div>
 
           <div class="col-md-6">
-            <label for="address-city" class="form-label">City:</label>
+            <label for="address-city" class="form-label">Cidade:</label>
             <input type="text" id="address-city" name="address_city" class="form-control">
           </div>
 
           <div class="col-md-6">
-            <label for="address-zip-code" class="form-label">Zip Code:</label>
+            <label for="address-zip-code" class="form-label">CEP:</label>
             <input type="text" id="address-zip-code" name="address_zip_code" class="form-control">
           </div>
 
@@ -92,10 +92,10 @@
             <input type="text" id="address-geo-lng" name="address_geo_lng" class="form-control">
           </div>
           
-          <h2 class="text-secondary">Contato</h2>
+          <h2 class="text-secondary">Contatos</h2>
 
           <div class="col-md-6">
-            <label for="phone" class="form-label">Phone:</label>
+            <label for="phone" class="form-label">Telefone:</label>
             <input type="text" id="phone" name="phone" class="form-control">
           </div>
 
@@ -104,27 +104,25 @@
             <input type="text" id="website" name="website" class="form-control">
           </div>
 
-          <h2 class="text-secondary">Company</h2>
+          <h2 class="text-secondary">Empresa:</h2>
 
           <div class="col-md-6">
-            <label for="company-name" class="form-label">Name:</label>
+            <label for="company-name" class="form-label">Nome:</label>
             <input type="text" id="company-name" name="company_name" class="form-control">
           </div>
 
           <div class="col-md-6">
-            <label for="company-catch-phrase" class="form-label">Catch Phrase:</label>
+            <label for="company-catch-phrase" class="form-label">bordão:</label>
             <input type="text" id="company-catch-phrase" name="company_catch_phrase" class="form-control">
           </div>
 
           <div class="col-md-6">
-            <label for="company-bs" class="form-label">Business Strategy:</label>
+            <label for="company-bs" class="form-label">Estrategia de negocios:</label>
             <input type="text" id="company-bs" name="company_bs" class="form-control">
           </div>
 
           <div class="col-12">
             <button type="submit" class="btn btn-success">ENVIAR</button>
-            <!-- <button id="user-list-btn" type="button" class="btn btn-primary"><i class="bi bi-person-lines-fill"></i> Lista de Usuários </button> -->
-
           </div>
         </form>
       </div>
@@ -134,16 +132,16 @@
   
       <div class="col-12 mt-5">        
         <section id="users-container" class="users-container table-responsive">
-          <table class="table">
+          <table class="table text-center">
               <thead>
                   <tr>
-                    <th scope="col">NAME</th>
-                    <th scope="col">USER</th>
+                    <th scope="col">NOME</th>
+                    <th scope="col">USUARIO</th>
                     <th scope="col">EMAIL</th>
-                    <th scope="col">COMPANY</th>
-                    <th scope="col">PHONE</th>
+                    <th scope="col">EMPRESA</th>
+                    <th scope="col">TELEFONE</th>
                     <th scope="col">WEBSITE</th>
-                    <th scope="col ">ACTIONS</th>
+                    <th scope="col ">AÇÕES</th>
   
                   </tr>
               </thead>
